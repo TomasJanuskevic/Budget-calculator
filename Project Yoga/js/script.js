@@ -39,7 +39,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     // Timer
 
-    let deadline = '2019-11-05';
+    let deadline = '2019-11-08';
 
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -50,11 +50,11 @@ window.addEventListener('DOMContentLoaded', function () {
         if (hours < 10) {
             hours = "0" + hours;
         }
-        
+
         if (minutes < 10) {
             minutes = "0" + minutes;
         }
-        
+
         if (seconds < 10) {
             seconds = "0" + seconds;
         }
@@ -71,9 +71,8 @@ window.addEventListener('DOMContentLoaded', function () {
         let timer = document.getElementById(id),
             hours = timer.querySelector('.hours'),
             minutes = timer.querySelector('.minutes'),
-            seconds = timer.querySelector('.seconds');
-
-        timeInterval = setInterval(updateClock, 1000);
+            seconds = timer.querySelector('.seconds'),
+            timeInterval = setInterval(updateClock, 1000);
 
         function updateClock() {
             let t = getTimeRemaining(endtime);
@@ -81,11 +80,30 @@ window.addEventListener('DOMContentLoaded', function () {
             minutes.textContent = t.minutes;
             seconds.textContent = t.seconds;
 
-            if (t.total <= 0) {
+            if (t.total < 0) {
                 clearInterval(timeInterval);
             }
         }
     }
 
     setClock('timer', deadline);
+
+    // Modal
+
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close');
+
+    more.addEventListener('click', function () {
+        overlay.style.display = 'block';
+        this.classList.add('more-splash');
+        document.body.style.overflow = 'hidden';
+    })
+
+    close.addEventListener('click', function () {
+        overlay.style.display = 'none';
+        more.classList.remove('more-splash');
+        document.body.style.overflow = '';
+    })
+
 });
