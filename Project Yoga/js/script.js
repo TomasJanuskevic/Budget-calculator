@@ -210,41 +210,55 @@ window.addEventListener('DOMContentLoaded', function () {
         restDays = document.querySelectorAll('.counter-block-input')[1],
         place = document.getElementById('select'),
         totalValue = document.getElementById('total'),
+        mumbaiValue = document.getElementById('mumbai'),
         personsSum = 0,
         daysSum = 0,
-        total = 0;
+        total = 0,
+        calc = 0,
+        baseValue = mumbaiValue.value;
 
-        totalValue.innerHTML = 0;
+    totalValue.innerHTML = 0;
 
-    persons.addEventListener('change', function () {
+    persons.addEventListener('input', function () {
         personsSum = +this.value;
-        total = (daysSum + personsSum) * 1;
+        calc = (daysSum + personsSum) * 300;
+        total = calc * baseValue;
 
-        if (restDays.value == '') {
-            totalValue.innerHTML = 0;
-        } else {
-            totalValue.innerHTML = total;
-        }
-    });
-    
-    restDays.addEventListener('change', function () {
-        daysSum = +this.value;
-        total = (daysSum + personsSum) * 1;
-
-        if (persons.value == '') {
-            totalValue.innerHTML = 0;
-        } else {
-            totalValue.innerHTML = total;
-        }
-    });
-    
-    place.addEventListener('change', function() {
         if (persons.value == '' || restDays.value == '') {
             totalValue.innerHTML = 0;
         } else {
-            let a = total;
-            totalValue.innerHTML = a * this.options[this.selectedIndex].value;
+            totalValue.innerHTML = total;
+            console.log(baseValue + 'koeficient');
+            console.log(personsSum + 'person');
+            console.log(daysSum + 'days');
         }
-    })
+    });
+
+    restDays.addEventListener('input', function () {
+        daysSum = +this.value;
+        calc = (daysSum + personsSum) * 300;
+        total = calc * baseValue;
+
+        if (persons.value == '' || restDays.value == '') {
+            totalValue.innerHTML = 0;
+        } else {
+            totalValue.innerHTML = total;
+            console.log(baseValue + 'koeficient');
+            console.log(personsSum + 'person');
+            console.log(daysSum + 'days');
+        }
+    });
+
+    place.addEventListener('input', function () {
+        if (persons.value == '' || restDays.value == '') {
+            totalValue.innerHTML = 0;
+        } else {
+            baseValue = this.options[this.selectedIndex].value;
+            totalValue.innerHTML = calc * baseValue;
+            console.log(baseValue + 'koeficient');
+            console.log(personsSum + 'person');
+            console.log(daysSum + 'days');
+        }
+    });
 
 });
