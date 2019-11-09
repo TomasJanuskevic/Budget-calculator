@@ -72,7 +72,9 @@ window.addEventListener('DOMContentLoaded', function () {
             hours = timer.querySelector('.hours'),
             minutes = timer.querySelector('.minutes'),
             seconds = timer.querySelector('.seconds'),
-            timeInterval = setInterval(updateClock, 1000);
+            timeInterval = setInterval(updateClock, 1000),
+            timerDots = document.querySelectorAll('.timer-dots');
+
 
         function updateClock() {
             let t = getTimeRemaining(endtime);
@@ -82,6 +84,12 @@ window.addEventListener('DOMContentLoaded', function () {
 
             if (t.total < 0) {
                 clearInterval(timeInterval);
+                hours.textContent = '';
+                minutes.textContent = 'Time out';
+                seconds.textContent = '';
+                timerDots.forEach(function (item) {
+                    item.textContent = '';
+                });
             }
         }
     }
@@ -191,7 +199,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     dotsWrap.addEventListener('click', function (event) {
         for (let i = 0; i < dots.length + 1; i++) {
-            if (event.target.classList.contains('dot') && event.target == dots[i -1]) {
+            if (event.target.classList.contains('dot') && event.target == dots[i - 1]) {
                 currentSlide(i);
             }
         }
