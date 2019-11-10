@@ -228,9 +228,6 @@ window.addEventListener('DOMContentLoaded', function () {
             totalValue.innerHTML = 0;
         } else {
             totalValue.innerHTML = total;
-            console.log(baseValue + 'koeficient');
-            console.log(personsSum + 'person');
-            console.log(daysSum + 'days');
         }
     });
 
@@ -243,9 +240,6 @@ window.addEventListener('DOMContentLoaded', function () {
             totalValue.innerHTML = 0;
         } else {
             totalValue.innerHTML = total;
-            console.log(baseValue + 'koeficient');
-            console.log(personsSum + 'person');
-            console.log(daysSum + 'days');
         }
     });
 
@@ -255,9 +249,6 @@ window.addEventListener('DOMContentLoaded', function () {
         } else {
             baseValue = this.options[this.selectedIndex].value;
             totalValue.innerHTML = calc * baseValue;
-            console.log(baseValue + 'koeficient');
-            console.log(personsSum + 'person');
-            console.log(daysSum + 'days');
         }
     });
 
